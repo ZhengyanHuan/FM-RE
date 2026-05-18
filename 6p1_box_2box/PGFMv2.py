@@ -43,7 +43,8 @@ class PolicyNet(nn.Module):
                 nn.SELU(),
                 nn.LazyLinear(out_features=ACTION_DIM)
             )
-        self.log_std = nn.Parameter(torch.zeros(ACTION_DIM))
+        self.log_std = nn.Parameter(torch.zeros(ACTION_DIM)) #control the initial exploration range
+
 
     def forward(self, state):
         mean = self.net(state)
@@ -189,6 +190,8 @@ class PGFM:
                 ut_ND = self.ut_given_x1(xt_ND, x1_ND, t_N)
                 v_ND_grad, v_ND, log_prob_N = self.policy.get_v(xt_ND, t_N)
                 flow_loss = self.crieria(ut_ND, v_ND_grad)
+                #when computing flow_loss, remove the noise part from v_ND_grad when the batchsize is small to avoid high variance
+
                 #############################
 
 

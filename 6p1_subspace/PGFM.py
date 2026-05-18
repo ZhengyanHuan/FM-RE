@@ -52,7 +52,7 @@ class PolicyNet(nn.Module):
     def __init__(self, d_model,t_layer_num = 2, x_layer_num = 3, tx_layer_num = 3, hidden_dim = 64):
         super(PolicyNet, self).__init__()
         self.net = mean_predictor(d_model, t_layer_num, x_layer_num,tx_layer_num, hidden_dim)
-        self.log_std = nn.Parameter(torch.zeros(d_model))
+        self.log_std = nn.Parameter(torch.zeros(d_model)) #control the initial exploration range
 
     def forward(self, x, t):
         mean = self.net(x, t)
@@ -187,6 +187,7 @@ class PGFM:
                 ut_ND = self.ut_given_x1(xt_ND, x1_ND, t_N)
                 v_ND_grad, v_ND, log_prob_N = self.policy.get_v(xt_ND, t_N)
                 flow_loss = self.crieria(ut_ND, v_ND_grad)
+                # when computing flow_loss, remove the noise part from v_ND_grad when the batchsize is small to avoid high variance
 
                 loss = (flow_loss + constraintloss)
                 optimizer.zero_grad()

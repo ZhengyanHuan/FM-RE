@@ -134,7 +134,7 @@ class PolicyNet(nn.Module):
     def __init__(self, channels=[32, 64, 128, 256], embed_dim=256):
         super(PolicyNet, self).__init__()
         self.net = RLs2Model(channels=channels, embed_dim=embed_dim)
-        self.log_std = nn.Parameter(torch.zeros(28*28))
+        self.log_std = nn.Parameter(torch.zeros(28*28)) #control the initial exploration range
 
     def forward(self, x, t):
         mean = self.net(x, t)
@@ -261,6 +261,7 @@ class PGFM:
                 vt_N1DD_grad, vt_N1DD, log_prob_N = self.policy.get_v(xt_ND, t_N)
 
                 flow_loss = self.crieria(ut_ND, vt_N1DD_grad)
+                # when computing flow_loss, remove the noise part from vt_N1DD_grad when the batchsize is small to avoid high variance
 
                 loss = (flow_loss+constraint_loss)
                 optimizer.zero_grad()

@@ -138,7 +138,7 @@ class PolicyNet(nn.Module):
 
     def forward(self, x, t):
         mean = self.net(x, t)
-        std = torch.exp(self.log_std)+1e-5
+        std = torch.exp(self.log_std)+1e-5 #control the initial exploration range
         return mean, std.view(1, 32, 32)
 
     def get_v(self, cur_state_N1DD, cur_t_N, deterministic=False):
@@ -279,6 +279,7 @@ class PGFM:
                 vt_N1DD_grad, vt_N1DD, log_prob_N = self.policy.get_v(xt_ND, t_N)
 
                 flow_loss = self.crieria(ut_ND, vt_N1DD_grad)
+                # when computing flow_loss, remove the noise part from vt_N1DD_grad when the batchsize is small to avoid high variance
 
                 loss = (flow_loss + constraint_loss)
                 optimizer.zero_grad()
