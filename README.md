@@ -73,11 +73,14 @@ For synthetic and attribute-constrained generation, the general workflow is:
 ## Citation
 
 ```bibtex
-@article{huan2026constraintaware,
-  title   = {Constraint-Aware Flow Matching via Randomized Exploration},
-  author  = {Huan, Zhengyan and Boerma, Jacob and Liu, Li-Ping and Aeron, Shuchin},
-  journal = {Transactions on Machine Learning Research},
-  year    = {2026},
-  url     = {https://openreview.net/forum?id=OR4h9WPJhV}
+@article{
+huan2026constraintaware,
+title={Constraint-Aware Flow Matching via Randomized Exploration},
+author={Zhengyan Huan and Jacob Boerma and Liping Liu and Shuchin Aeron},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
+year={2026},
+url={https://openreview.net/forum?id=OR4h9WPJhV},
+note={}
 }
 ```
