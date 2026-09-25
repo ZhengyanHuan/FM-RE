@@ -27,7 +27,6 @@ Folder names refer to the experiment sections in the paper.
 | [`6p3_MNIST_LeNet`](6p3_MNIST_LeNet/) | 6.3 | Adversarial MNIST generation against LeNet-5. |
 | [`6p3_CIFAR_ResNet`](6p3_CIFAR_ResNet/) | 6.3 | Adversarial CIFAR-10 generation against ResNet-50. |
 
-Each folder has its own `configs.py`. These are independent experiments, not an installable Python package or a single command-line application. The `test.ipynb` files are evaluation notebooks, not automated unit tests.
 
 
 ## Data and checkpoint preparation
