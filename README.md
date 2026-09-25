@@ -1,4 +1,4 @@
-# FM-RE: Constraint-Aware Flow Matching via Randomized Exploration
+# Constraint-Aware Flow Matching via Randomized Exploration
 
 Research code for **Constraint-Aware Flow Matching via Randomized Exploration**, by Zhengyan Huan, Jacob Boerma, Li-Ping Liu, and Shuchin Aeron, published in *Transactions on Machine Learning Research* (April 2026).
 
